@@ -1,0 +1,48 @@
+<h1>Job Portal</h1>
+
+<div>
+    <h3>Add Job</h3>
+    <form (submit)="addJob()">
+        <input type="text" name="title" placeholder="Title" [(ngModel)]="newJob.title">
+        <input type="text" name="description" placeholder="Description" [(ngModel)]="newJob.description">
+        <input type="text" name="salary" placeholder="Salary" [(ngModel)]="newJob.salary">
+        <input type="text" name="location" placeholder="Location" [(ngModel)]="newJob.location">
+        <input type="text" name="type" placeholder="Type" [(ngModel)]="newJob.type">
+        <button type="submit">Add Job</button>
+    </form>
+</div>
+
+<div>
+    <h3>Search Jobs</h3>
+    <input type="text" placeholder="Search Jobs" [(ngModel)]="searchKeyword">
+</div>
+
+<div>
+    <h3>List of Jobs</h3>
+    <ul>
+        <li *ngFor="let job of filteredJobs">
+            <div>
+                <h4>{{ job.title }}</h4>
+                <p>Description: {{ job.description }}</p>
+                <p>Salary: {{ job.salary }}</p>
+                <p>Location: {{ job.location }}</p>
+                <p>Type: {{ job.type }}</p>
+                <button (click)="editJob(job)">Edit</button>
+                <button (click)="deleteJob(job)">Delete</button>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="isEditing">
+    <h3>Edit Job</h3>
+    <form (submit)="saveEditedJob()">
+        <input type="text" name="title" placeholder="Title" [(ngModel)]="editedJob.title">
+        <input type="text" name="description" placeholder="Description" [(ngModel)]="editedJob.description">
+        <input type="text" name="salary" placeholder="Salary" [(ngModel)]="editedJob.salary">
+        <input type="text" name="location" placeholder="Location" [(ngModel)]="editedJob.location">
+        <input type="text" name="type" placeholder="Type" [(ngModel)]="editedJob.type">
+        <button type="submit">Save</button>
+        <button type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+</div>
